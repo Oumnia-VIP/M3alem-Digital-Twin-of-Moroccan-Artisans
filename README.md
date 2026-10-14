@@ -14,7 +14,9 @@ We gathered embroidery videos mainly from YouTube, making sure to choose videos 
 We used MediaPipe, a tool from Google, to automatically detect and extract 21 key points on each hand, like finger joints and tips. This step replaced manual labeling and gave us precise hand movement data.
 
 **Labels: (Fassi) patterns**
-
+<p align="center">
+  <img src="Pictures/Patterns_of_Tarz_El-Fassi.png" width="48%" alt="Patterns of Tarz_El-Fassi" />
+</p>
 
 - We then selected sequences of 35 consecutive frames, which represent about two seconds of continuous motion. This helped us capture the full gesture rather than just a single hand position. 
 
@@ -32,6 +34,10 @@ For the model, we implemented the following **sequential deep learning architect
 - **`LSTM(64)`** to summarize the entire sequence into a more compact feature vector.
 - A **`Dense(64, activation='relu')`** layer followed by **Batch Normalization**, and finally a **`Dense(num_classes, activation='softmax')`** output layer to generate probabilities for each type of embroidery stitch.
 
+<p align="center">
+  <img src="Pictures/confusion_metrix.png" width="48%" alt="Confusion Matrix" />
+  <img src="Pictures/classification_report.png" width="48%" alt="Classification Report" />
+</p>
 
   The results might seem too perfect but this is because most patterns or designs actually use the same recurring finger movement
 
@@ -47,9 +53,17 @@ After training, we evaluated the model on the test set and verified that all cla
 ## 3D Integration and Digital Twin
 
 Finally, we integrated the system into **Unreal Engine**, using a **MetaHuman character created in Blender**. The digital character reproduces the gestures recognized by the AI model, providing an immersive learning experience that allows users to learn traditional embroidery digitally.
+<p align="center">
+  <img src="Pictures/metahuman_creator.png" width="48%" alt="Metahuman creator" />
+</p>
 - To create a realistic 3D model of the artisan’s face, high-resolution photos are captured from multiple angles using **Polycam’s Photo Mode**. Blurry or out-of-focus images are removed to ensure mesh quality. The dataset is processed using the “Full” mode (without object masking), generating a detailed 3D mesh. The resulting **GLB file**, containing both geometry and textures, is then imported into Blender for cleanup and rigging.
 - Upon importing the GLB file into Blender, the 3D model undergoes manual refinement and topology optimization. The unnecessary components, such as the neck, body, and hair, are removed to isolate only the frontal part of the head, which is required for facial rigging in Metahuman Creator.
+<p align="center">
+  <img src="Pictures/blender1.png" width="48%" alt="Manual refinement and topology optimization" />
+  <img src="Pictures/blender2.png" width="48%" alt="Mesh Preparation" />
+</p>
 - To ensure mesh integrity, several cleanup operations are performed: Delete Loose Geometry, Degenerate Dissolve, then Merge by Distance. These steps prepare the mesh for rigging by ensuring that it is topologically clean and optimized.
+
 - After downloading and enabling the MetaHuman plugin in **Unreal Engine 5.1**, tracking of active facial parameters should be activated to preserve the accuracy of the artisan’s facial features. This ensures that the imported 3D model remains true to the original expression and structure during animation and integration.
 
   ## Current Status & Limitations
