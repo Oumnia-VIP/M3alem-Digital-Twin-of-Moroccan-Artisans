@@ -125,3 +125,7 @@ The long-term goal is to provide an immersive, portable learning environment whe
 ## Project Objective
 
 Overall, this project combines **motion capture, deep learning for gesture recognition, and interactive 3D visualization**. It aims to train new artisans while preserving Morocco’s traditional embroidery craftsmanship.
+
+## LICENSE
+M3alem is an original project by Oumnia Boumadjou and Ghita Labzar. All rights are reserved for the project's original materials unless otherwise stated. Third-party components remain subject to their respective licenses.
+For permission to reuse or reproduce original project materials, please contact the author.
